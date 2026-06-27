@@ -9,78 +9,38 @@
   #world { position: absolute; transform-origin: 0 0; }
 
   .group-label {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.5;
-    position: absolute;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; opacity: 0.5; position: absolute;
   }
-
   .box {
-    position: absolute;
-    border-radius: 6px;
-    border: 1.5px solid;
-    width: 130px;
-    overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    position: absolute; border-radius: 6px; border: 1.5px solid;
+    width: 130px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.15);
   }
-  .box.planned {
-    border-style: dashed;
-    opacity: 0.75;
-  }
-  .box-title {
-    padding: 5px 8px;
-    font-weight: 700;
-    font-size: 11px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-  }
-  .box-body {
-    padding: 4px 8px 6px;
-    line-height: 1.5;
-    font-size: 10px;
-    opacity: 0.85;
-  }
+  .box.planned { border-style: dashed; opacity: 0.75; }
+  .box-title { padding: 5px 8px; font-weight: 700; font-size: 11px; border-bottom: 1px solid rgba(0,0,0,0.1); }
+  .box-body { padding: 4px 8px 6px; line-height: 1.5; font-size: 10px; opacity: 0.85; }
   .box-body div::before { content: '• '; opacity: 0.5; }
 
-  /* Color themes per namespace */
-  .core    { border-color: #6c8ebf; background: #dae8fc; }
-  .core .box-title { background: #6c8ebf; color: white; }
-
-  .data    { border-color: #82b366; background: #d5e8d4; }
-  .data .box-title { background: #82b366; color: white; }
-
-  .battle  { border-color: #d6855b; background: #ffe6cc; }
-  .battle .box-title { background: #d6855b; color: white; }
-
-  .world   { border-color: #9673a6; background: #e1d5e7; }
-  .world .box-title { background: #9673a6; color: white; }
-
-  .states  { border-color: #b08050; background: #fff2cc; }
-  .states .box-title { background: #b08050; color: white; }
-
+  .core     { border-color: #6c8ebf; background: #dae8fc; }
+  .core     .box-title { background: #6c8ebf; color: white; }
+  .data     { border-color: #82b366; background: #d5e8d4; }
+  .data     .box-title { background: #82b366; color: white; }
+  .battle   { border-color: #d6855b; background: #ffe6cc; }
+  .battle   .box-title { background: #d6855b; color: white; }
+  .world    { border-color: #9673a6; background: #e1d5e7; }
+  .world    .box-title { background: #9673a6; color: white; }
+  .states   { border-color: #b08050; background: #fff2cc; }
+  .states   .box-title { background: #b08050; color: white; }
   .entities { border-color: #6aa84f; background: #d9ead3; }
   .entities .box-title { background: #6aa84f; color: white; }
 
-  .planned-style { border-color: #999; background: #f5f5f5; }
-  .planned-style .box-title { background: #999; color: white; }
-
   svg.arrows { position: absolute; top: 0; left: 0; pointer-events: none; }
   .arrow { stroke-width: 1.5; fill: none; }
-  .arrow.strong { stroke: #888; stroke-width: 2; }
 
   .legend {
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 8px 10px;
-    font-size: 10px;
-    line-height: 1.8;
-    z-index: 100;
-    pointer-events: none;
+    position: absolute; bottom: 8px; right: 8px; background: white;
+    border: 1px solid #ddd; border-radius: 6px; padding: 8px 10px;
+    font-size: 10px; line-height: 1.8; z-index: 100; pointer-events: none;
   }
   .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
   .hint { position: absolute; top: 8px; left: 8px; font-size: 10px; color: #aaa; pointer-events: none; z-index: 100; }
@@ -89,30 +49,24 @@
 <body>
 <h2 style="font-family:'Segoe UI',sans-serif; font-size:11px; font-weight:600; color:#888; letter-spacing:0.5px; padding:6px 12px 4px; opacity:0.75;">UML class diagram &mdash; MonoGame Pok&eacute;mon-style game &middot; implemented classes &amp; planned features by namespace</h2>
 <div id="canvas">
-  <div id="world" style="width:1650px; height:950px;">
-    <svg class="arrows" width="1650" height="950">
+  <div id="world" style="width:1580px; height:880px;">
+
+    <svg class="arrows" width="1580" height="880">
       <defs>
-        <!-- ── Filled arrowheads (association / dependency target end) ── -->
         <marker id="arr-core"   markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#6c8ebf"/></marker>
         <marker id="arr-states" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#b08050"/></marker>
         <marker id="arr-battle" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#d6855b"/></marker>
         <marker id="arr-data"   markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#82b366"/></marker>
         <marker id="arr-world"  markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#9673a6"/></marker>
-
-        <!-- ── Hollow triangle — Generalization / Inheritance (tip points at parent) ── -->
         <marker id="inh-states" markerWidth="13" markerHeight="10" refX="11" refY="5" orient="auto">
           <polygon points="0,0 10,5 0,10" fill="white" stroke="#b08050" stroke-width="1.5"/>
         </marker>
-
-        <!-- ── Filled diamond — Composition (source/owner end, extends toward target) ── -->
         <marker id="comp-core"  markerWidth="14" markerHeight="12" refX="0" refY="5" orient="auto">
           <polygon points="0,5 6,0 12,5 6,10" fill="#6c8ebf"/>
         </marker>
         <marker id="comp-world" markerWidth="14" markerHeight="12" refX="0" refY="5" orient="auto">
           <polygon points="0,5 6,0 12,5 6,10" fill="#9673a6"/>
         </marker>
-
-        <!-- ── Empty diamond — Aggregation (source/owner end, extends toward target) ── -->
         <marker id="agg-core"   markerWidth="14" markerHeight="12" refX="0" refY="5" orient="auto">
           <polygon points="0,5 6,0 12,5 6,10" fill="white" stroke="#6c8ebf" stroke-width="1.5"/>
         </marker>
@@ -124,384 +78,209 @@
         </marker>
       </defs>
 
-      <!-- ══════════ CORE ══════════ -->
-      <!-- Composition: Game1 ◆─→ PlayerData -->
-      <line stroke="#6c8ebf" marker-start="url(#comp-core)" marker-end="url(#arr-core)" x1="120" y1="120" x2="120" y2="190"/>
-      <!-- Composition: Game1 ◆─→ GameStateManager -->
-      <line stroke="#6c8ebf" marker-start="url(#comp-core)" marker-end="url(#arr-core)" x1="185" y1="62" x2="305" y2="62"/>
-      <!-- Aggregation: PlayerData ◇─→ Creature (Party list) -->
-      <line stroke="#6c8ebf" marker-start="url(#agg-core)" marker-end="url(#arr-core)" x1="185" y1="215" x2="700" y2="170"/>
-      <!-- Association: GameStateManager ──→ GameState -->
-      <line stroke="#6c8ebf" marker-end="url(#arr-core)" x1="370" y1="86" x2="370" y2="200"/>
+      <!-- CORE -->
+      <line class="arrow" stroke="#6c8ebf" marker-start="url(#comp-core)"  marker-end="url(#arr-core)"   x1="120" y1="132" x2="120" y2="195"/>
+      <line class="arrow" stroke="#6c8ebf" marker-start="url(#comp-core)"  marker-end="url(#arr-core)"   x1="185" y1="86"  x2="310" y2="68"/>
+      <line class="arrow" stroke="#6c8ebf" marker-start="url(#agg-core)"   marker-end="url(#arr-core)"   x1="185" y1="223" x2="700" y2="138"/>
+      <line class="arrow" stroke="#6c8ebf"                                  marker-end="url(#arr-core)"   x1="375" y1="96"  x2="375" y2="195"/>
 
-      <!-- ══════════ STATES ══════════ -->
-      <!-- Generalization: child ──▷ GameState (hollow triangle at parent) -->
-      <line stroke="#b08050" marker-end="url(#inh-states)" x1="225" y1="370" x2="345" y2="280"/>
-      <line stroke="#b08050" marker-end="url(#inh-states)" x1="370" y1="370" x2="370" y2="280"/>
-      <line stroke="#b08050" marker-end="url(#inh-states)" x1="515" y1="370" x2="400" y2="280"/>
-      <!-- Aggregation: OverworldState ◇─→ Player -->
-      <line stroke="#b08050" marker-start="url(#agg-states)" marker-end="url(#arr-states)" x1="165" y1="415" x2="140" y2="510"/>
-      <!-- Aggregation: OverworldState ◇─→ TileMap -->
-      <line stroke="#b08050" marker-start="url(#agg-states)" marker-end="url(#arr-states)" x1="290" y1="400" x2="760" y2="400"/>
-      <!-- Aggregation: OverworldState ◇─→ EncounterTable -->
-      <line stroke="#b08050" marker-start="url(#agg-states)" marker-end="url(#arr-states)" x1="290" y1="420" x2="760" y2="516"/>
-      <!-- Association: BattleState ──→ Creature -->
-      <line stroke="#b08050" marker-end="url(#arr-states)" x1="435" y1="395" x2="700" y2="175"/>
+      <!-- STATES: Generalization child→parent (hollow triangle at parent) -->
+      <line class="arrow" stroke="#b08050" marker-end="url(#inh-states)" x1="220" y1="380" x2="350" y2="263"/>
+      <line class="arrow" stroke="#b08050" marker-end="url(#inh-states)" x1="375" y1="380" x2="375" y2="263"/>
+      <line class="arrow" stroke="#b08050" marker-end="url(#inh-states)" x1="530" y1="380" x2="420" y2="263"/>
+      <!-- OverworldState◇→Player, TileMap, EncounterTable -->
+      <line class="arrow" stroke="#b08050" marker-start="url(#agg-states)" marker-end="url(#arr-states)" x1="158" y1="418" x2="130" y2="640"/>
+      <line class="arrow" stroke="#b08050" marker-start="url(#agg-states)" marker-end="url(#arr-states)" x1="220" y1="448" x2="265" y2="640"/>
+      <line class="arrow" stroke="#b08050" marker-start="url(#agg-states)" marker-end="url(#arr-states)" x1="285" y1="425" x2="375" y2="640"/>
+      <!-- BattleState→Creature -->
+      <line class="arrow" stroke="#b08050" marker-end="url(#arr-states)" x1="440" y1="405" x2="700" y2="165"/>
 
-      <!-- ══════════ BATTLE ══════════ -->
-      <!-- Association: MoveChoice ──→ Creature (User ref) -->
-      <line stroke="#d6855b" marker-end="url(#arr-battle)" x1="765" y1="310" x2="765" y2="217"/>
-      <!-- Association: MoveChoice ──→ MoveData (Move ref) -->
-      <line stroke="#d6855b" marker-end="url(#arr-battle)" x1="830" y1="335" x2="1020" y2="262"/>
-      <!-- Aggregation: Creature ◇─→ MoveData (Moves list) -->
-      <line stroke="#d6855b" marker-start="url(#agg-battle)" marker-end="url(#arr-battle)" x1="830" y1="185" x2="1020" y2="250"/>
-      <!-- Association: Creature ──→ CreatureSpecies -->
-      <line stroke="#d6855b" marker-end="url(#arr-battle)" x1="830" y1="148" x2="1020" y2="125"/>
+      <!-- BATTLE -->
+      <line class="arrow" stroke="#d6855b" marker-end="url(#arr-battle)"                                  x1="765" y1="305" x2="765" y2="172"/>
+      <line class="arrow" stroke="#d6855b" marker-end="url(#arr-battle)"                                  x1="830" y1="333" x2="950" y2="239"/>
+      <line class="arrow" stroke="#d6855b" marker-start="url(#agg-battle)" marker-end="url(#arr-battle)" x1="830" y1="162" x2="950" y2="222"/>
+      <line class="arrow" stroke="#d6855b" marker-end="url(#arr-battle)"                                  x1="830" y1="118" x2="950" y2="104"/>
 
-      <!-- ══════════ DATA — Dependency (dashed) ══════════ -->
-      <!-- CreatureSpecies ··→ CreatureType -->
-      <line stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1150" y1="115" x2="1220" y2="115"/>
-      <!-- MoveData ··→ CreatureType -->
-      <line stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1150" y1="250" x2="1220" y2="140"/>
-      <!-- MoveData ··→ MoveEffect ★ -->
-      <line stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1150" y1="268" x2="1220" y2="268"/>
-      <!-- TypeReactionTable ··→ CreatureType -->
-      <line stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1150" y1="378" x2="1220" y2="155"/>
-      <!-- TypeReactionTable ··→ ReactionEffect -->
-      <line stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1150" y1="395" x2="1420" y2="395"/>
-      <!-- SpeciesRegistry ··→ CreatureSpecies (routed left of column) -->
-      <path stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" d="M 1020,537 L 988,537 L 988,120 L 1020,120" fill="none"/>
-      <!-- MoveRegistry ··→ MoveData -->
-      <path stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" d="M 1020,657 L 980,657 L 980,262 L 1020,262" fill="none"/>
+      <!-- DATA: dashed dependency -->
+      <line class="arrow" stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1080" y1="104" x2="1150" y2="92"/>
+      <line class="arrow" stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1080" y1="242" x2="1150" y2="122"/>
+      <line class="arrow" stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1080" y1="258" x2="1150" y2="248"/>
+      <path class="arrow" stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" d="M 1080,368 L 1115,368 L 1115,92 L 1150,92" fill="none"/>
+      <line class="arrow" stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1080" y1="382" x2="1330" y2="374"/>
+      <path class="arrow" stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" d="M 950,503 L 935,503 L 935,104 L 950,104" fill="none"/>
+      <path class="arrow" stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" d="M 950,628 L 928,628 L 928,239 L 950,239" fill="none"/>
 
-      <!-- ══════════ WORLD ══════════ -->
-      <!-- Composition: EncounterTable ◆─→ EncounterEntry -->
-      <line stroke="#9673a6" marker-start="url(#comp-world)" marker-end="url(#arr-world)" x1="890" y1="527" x2="920" y2="635"/>
-      <!-- Dependency: EncounterTable ··→ Creature (spawns instances) -->
-      <path stroke="#9673a6" stroke-dasharray="5,3" marker-end="url(#arr-world)" d="M 760,515 L 690,515 L 690,217" fill="none"/>
+      <!-- WORLD -->
+      <line class="arrow" stroke="#9673a6" marker-start="url(#comp-world)" marker-end="url(#arr-world)" x1="425" y1="696" x2="425" y2="770"/>
+      <path class="arrow" stroke="#9673a6" stroke-dasharray="5,3" marker-end="url(#arr-world)" d="M 490,668 L 597,668 L 597,120 L 700,120" fill="none"/>
     </svg>
 
-    <!-- GROUP: CORE -->
-    <div class="group-label" style="left:20px;top:15px;">Core</div>
-
-    <!-- Game1 -->
-    <div class="box core" style="left:55px;top:30px;">
+    <!-- CORE -->
+    <div class="group-label" style="left:20px;top:22px;">Core</div>
+    <div class="box core" style="left:55px;top:40px;">
       <div class="box-title">Game1</div>
-      <div class="box-body">
-        <div>PlayerData</div>
-        <div>StateManager</div>
-        <div>InputManager</div>
-        <div>PixelTexture</div>
-      </div>
+      <div class="box-body"><div>PlayerData</div><div>StateManager</div><div>InputManager</div><div>PixelTexture</div></div>
     </div>
-
-    <!-- PlayerData -->
-    <div class="box core" style="left:55px;top:190px;">
+    <div class="box core" style="left:55px;top:195px;">
       <div class="box-title">PlayerData</div>
-      <div class="box-body">
-        <div>Party: List&lt;Creature&gt;</div>
-        <div>Money: int</div>
-      </div>
+      <div class="box-body"><div>Party: List&lt;Creature&gt;</div><div>Money: int</div></div>
     </div>
-
-    <!-- GameStateManager -->
-    <div class="box core" style="left:305px;top:30px;">
+    <div class="box core" style="left:310px;top:40px;">
       <div class="box-title">GameStateManager</div>
-      <div class="box-body">
-        <div>Stack&lt;GameState&gt;</div>
-        <div>Push / Pop / Replace</div>
-      </div>
+      <div class="box-body"><div>Stack&lt;GameState&gt;</div><div>Push / Pop / Replace</div></div>
     </div>
-
-    <!-- GameState (abstract) -->
-    <div class="box core" style="left:305px;top:200px;">
+    <div class="box core" style="left:310px;top:195px;">
       <div class="box-title">«abstract» GameState</div>
-      <div class="box-body">
-        <div>Update(gameTime)</div>
-        <div>Draw(spriteBatch)</div>
-        <div>OnEnter / OnExit</div>
-      </div>
+      <div class="box-body"><div>Update(gameTime)</div><div>Draw(spriteBatch)</div><div>OnEnter / OnExit</div></div>
     </div>
 
-    <!-- GROUP: STATES -->
-    <div class="group-label" style="left:160px;top:345px;">States</div>
-
-    <!-- OverworldState -->
-    <div class="box states" style="left:160px;top:370px;">
+    <!-- STATES -->
+    <div class="group-label" style="left:155px;top:362px;">States</div>
+    <div class="box states" style="left:155px;top:380px;">
       <div class="box-title">OverworldState</div>
-      <div class="box-body">
-        <div>Player, Camera</div>
-        <div>TileMap, Transitions</div>
-        <div>EncounterTable</div>
-      </div>
+      <div class="box-body"><div>Player, Camera</div><div>TileMap, Transitions</div><div>EncounterTable</div></div>
     </div>
-
-    <!-- BattleState -->
-    <div class="box states" style="left:305px;top:370px;">
+    <div class="box states" style="left:310px;top:380px;">
       <div class="box-title">BattleState</div>
-      <div class="box-body">
-        <div>Slot0, Slot1 (player)</div>
-        <div>Wild Creature</div>
-        <div>BattlePhase</div>
-      </div>
+      <div class="box-body"><div>Slot0, Slot1 (player)</div><div>Wild Creature</div><div>BattlePhase</div></div>
     </div>
-
-    <!-- MainMenuState -->
-    <div class="box states" style="left:450px;top:370px;">
+    <div class="box states" style="left:465px;top:380px;">
       <div class="box-title">MainMenuState</div>
-      <div class="box-body">
-        <div>Menu options</div>
-      </div>
+      <div class="box-body"><div>Menu options</div></div>
     </div>
-
-    <!-- Planned: StarterSelectState -->
-    <div class="box states planned" style="left:450px;top:470px;">
-      <div class="box-title">StarterSelectState ★</div>
-      <div class="box-body">
-        <div>Choose starter</div>
-        <div>Add to Party</div>
-      </div>
-    </div>
-
-    <!-- Planned: DialogueState -->
-    <div class="box states planned" style="left:305px;top:470px;">
-      <div class="box-title">DialogueState ★</div>
-      <div class="box-body">
-        <div>NPC dialogue</div>
-        <div>Text scroll</div>
-      </div>
-    </div>
-
-    <!-- Planned: GymState -->
-    <div class="box states planned" style="left:160px;top:470px;">
+    <div class="box states planned" style="left:155px;top:500px;">
       <div class="box-title">GymState ★</div>
-      <div class="box-body">
-        <div>Trainer battle</div>
-        <div>Badge reward</div>
-      </div>
+      <div class="box-body"><div>Trainer battle</div><div>Badge reward</div></div>
+    </div>
+    <div class="box states planned" style="left:310px;top:500px;">
+      <div class="box-title">DialogueState ★</div>
+      <div class="box-body"><div>NPC dialogue</div><div>Text scroll</div></div>
+    </div>
+    <div class="box states planned" style="left:465px;top:500px;">
+      <div class="box-title">StarterSelectState ★</div>
+      <div class="box-body"><div>Choose starter</div><div>Add to Party</div></div>
     </div>
 
-    <!-- GROUP: ENTITIES -->
-    <div class="group-label" style="left:20px;top:490px;">Entities</div>
-
-    <!-- Player -->
-    <div class="box entities" style="left:20px;top:510px;">
+    <!-- ENTITIES -->
+    <div class="group-label" style="left:20px;top:622px;">Entities</div>
+    <div class="box entities" style="left:20px;top:640px;">
       <div class="box-title">Player</div>
-      <div class="box-body">
-        <div>TilePosition</div>
-        <div>Facing, IsMoving</div>
-        <div>Update, Draw</div>
-      </div>
+      <div class="box-body"><div>TilePosition</div><div>Facing, IsMoving</div><div>Update, Draw</div></div>
     </div>
-
-    <!-- Planned: NPC -->
-    <div class="box entities planned" style="left:20px;top:640px;">
+    <div class="box entities planned" style="left:20px;top:770px;">
       <div class="box-title">NPC ★</div>
-      <div class="box-body">
-        <div>DialogueLines</div>
-        <div>TrainerParty</div>
-        <div>TilePosition</div>
-      </div>
+      <div class="box-body"><div>DialogueLines</div><div>TrainerParty</div><div>TilePosition</div></div>
     </div>
 
-    <!-- GROUP: BATTLE -->
-    <div class="group-label" style="left:700px;top:78px;">Battle</div>
-
-    <!-- Creature -->
-    <div class="box battle" style="left:700px;top:100px;">
-      <div class="box-title">Creature</div>
-      <div class="box-body">
-        <div>Species, Level</div>
-        <div>CurrentHp, MaxHp</div>
-        <div>Atk, Def, Speed</div>
-        <div>Moves, ActiveEffect</div>
-        <div>TakeDamage, Heal</div>
-      </div>
-    </div>
-
-    <!-- MoveChoice -->
-    <div class="box battle" style="left:700px;top:310px;">
-      <div class="box-title">MoveChoice</div>
-      <div class="box-body">
-        <div>User: Creature</div>
-        <div>Move: MoveData</div>
-      </div>
-    </div>
-
-    <!-- Planned: DamageCalculator -->
-    <div class="box battle planned" style="left:700px;top:430px;">
-      <div class="box-title">DamageCalculator ★</div>
-      <div class="box-body">
-        <div>Calculate(move, atk, def)</div>
-        <div>Apply reactions</div>
-      </div>
-    </div>
-
-    <!-- Planned: BattleUI -->
-    <div class="box battle planned" style="left:700px;top:550px;">
-      <div class="box-title">BattleUI ★</div>
-      <div class="box-body">
-        <div>HP bars</div>
-        <div>Move menu</div>
-        <div>Message box</div>
-      </div>
-    </div>
-
-    <!-- GROUP: DATA -->
-    <div class="group-label" style="left:1020px;top:48px;">Data</div>
-
-    <!-- CreatureSpecies -->
-    <div class="box data" style="left:1020px;top:70px;">
-      <div class="box-title">CreatureSpecies</div>
-      <div class="box-body">
-        <div>Id, Name, Type</div>
-        <div>BaseHp/Atk/Def/Speed</div>
-        <div>Learnset</div>
-        <div>EvolvesIntoId</div>
-      </div>
-    </div>
-
-    <!-- MoveData -->
-    <div class="box data" style="left:1020px;top:225px;">
-      <div class="box-title">MoveData</div>
-      <div class="box-body">
-        <div>Name, Type</div>
-        <div>Power, Accuracy</div>
-        <div>Description</div>
-      </div>
-    </div>
-
-    <!-- TypeReactionTable -->
-    <div class="box data" style="left:1020px;top:360px;">
-      <div class="box-title">TypeReactionTable</div>
-      <div class="box-body">
-        <div>GetReaction(t1, t2)</div>
-        <div>→ ReactionEffect</div>
-      </div>
-    </div>
-
-    <!-- SpeciesRegistry -->
-    <div class="box data" style="left:1020px;top:510px;">
-      <div class="box-title">SpeciesRegistry</div>
-      <div class="box-body">
-        <div>Get(id)</div>
-        <div>Load(jsonPath)</div>
-      </div>
-    </div>
-
-    <!-- MoveRegistry -->
-    <div class="box data" style="left:1020px;top:630px;">
-      <div class="box-title">MoveRegistry</div>
-      <div class="box-body">
-        <div>Get(name)</div>
-        <div>Load(jsonPath)</div>
-      </div>
-    </div>
-
-    <!-- CreatureType enum -->
-    <div class="box data" style="left:1220px;top:70px;">
-      <div class="box-title">«enum» CreatureType</div>
-      <div class="box-body">
-        <div>Normal, Fire, Water</div>
-        <div>Earth, Wind</div>
-        <div>Electricity</div>
-      </div>
-    </div>
-
-    <!-- ReactionEffect enum -->
-    <div class="box data" style="left:1420px;top:360px;">
-      <div class="box-title">«enum» ReactionEffect</div>
-      <div class="box-body">
-        <div>None, Vapor, Mud</div>
-        <div>Inferno, Frost</div>
-        <div>Lightning, +5 more</div>
-      </div>
-    </div>
-
-    <!-- Planned: MoveEffect enum -->
-    <div class="box data planned" style="left:1220px;top:225px;">
-      <div class="box-title">«enum» MoveEffect ★</div>
-      <div class="box-body">
-        <div>RaiseUserSpeed</div>
-        <div>LowerTargetSpeed</div>
-        <div>ApplyBurn, etc.</div>
-      </div>
-    </div>
-
-    <!-- GROUP: WORLD -->
-    <div class="group-label" style="left:760px;top:338px;">World</div>
-
-    <!-- TileMap -->
-    <div class="box world" style="left:760px;top:360px;">
+    <!-- WORLD -->
+    <div class="group-label" style="left:200px;top:622px;">World</div>
+    <div class="box world" style="left:200px;top:640px;">
       <div class="box-title">TileMap</div>
-      <div class="box-body">
-        <div>Width, Height</div>
-        <div>IsWalkable</div>
-        <div>IsTallGrass</div>
-        <div>Draw(sb, camera)</div>
-      </div>
+      <div class="box-body"><div>Width, Height</div><div>IsWalkable</div><div>IsTallGrass</div><div>Draw(sb, camera)</div></div>
     </div>
-
-    <!-- EncounterTable -->
-    <div class="box world" style="left:760px;top:500px;">
+    <div class="box world" style="left:360px;top:640px;">
       <div class="box-title">EncounterTable</div>
-      <div class="box-body">
-        <div>SpawnRandom(rng)</div>
-        <div>Weighted pick</div>
-      </div>
+      <div class="box-body"><div>SpawnRandom(rng)</div><div>Weighted pick</div></div>
     </div>
-
-    <!-- EncounterEntry -->
-    <div class="box world" style="left:920px;top:610px;">
-      <div class="box-title">EncounterEntry</div>
-      <div class="box-body">
-        <div>SpeciesId, Weight</div>
-        <div>MinLevel, MaxLevel</div>
-      </div>
-    </div>
-
-    <!-- MapTransition -->
-    <div class="box world" style="left:760px;top:640px;">
+    <div class="box world planned" style="left:200px;top:770px;">
       <div class="box-title">MapTransition</div>
-      <div class="box-body">
-        <div>Direction</div>
-        <div>TileMin, TileMax</div>
-        <div>TargetMap, SpawnXY</div>
-      </div>
+      <div class="box-body"><div>Direction</div><div>TileMin, TileMax</div><div>TargetMap, SpawnXY</div></div>
+    </div>
+    <div class="box world" style="left:360px;top:770px;">
+      <div class="box-title">EncounterEntry</div>
+      <div class="box-body"><div>SpeciesId, Weight</div><div>MinLevel, MaxLevel</div></div>
     </div>
 
-  </div><!-- /world -->
+    <!-- BATTLE -->
+    <div class="group-label" style="left:700px;top:50px;">Battle</div>
+    <div class="box battle" style="left:700px;top:68px;">
+      <div class="box-title">Creature</div>
+      <div class="box-body"><div>Species, Level</div><div>CurrentHp, MaxHp</div><div>Atk, Def, Speed</div><div>Moves, ActiveEffect</div><div>TakeDamage, Heal</div></div>
+    </div>
+    <div class="box battle" style="left:700px;top:305px;">
+      <div class="box-title">MoveChoice</div>
+      <div class="box-body"><div>User: Creature</div><div>Move: MoveData</div></div>
+    </div>
+    <div class="box battle planned" style="left:700px;top:420px;">
+      <div class="box-title">DamageCalculator ★</div>
+      <div class="box-body"><div>Calculate(move, atk, def)</div><div>Apply reactions</div></div>
+    </div>
+    <div class="box battle planned" style="left:700px;top:540px;">
+      <div class="box-title">BattleUI ★</div>
+      <div class="box-body"><div>HP bars</div><div>Move menu</div><div>Message box</div></div>
+    </div>
 
-  <div class="legend">
-    <div><span class="legend-dot" style="background:#6c8ebf"></span>Core</div>
-    <div><span class="legend-dot" style="background:#82b366"></span>Data</div>
-    <div><span class="legend-dot" style="background:#d6855b"></span>Battle</div>
-    <div><span class="legend-dot" style="background:#9673a6"></span>World</div>
-    <div><span class="legend-dot" style="background:#b08050"></span>States</div>
-    <div><span class="legend-dot" style="background:#6aa84f"></span>Entities</div>
-    <div><span class="legend-dot" style="background:#999; border: 1px dashed #999;"></span>★ Planned</div>
+    <!-- DATA -->
+    <div class="group-label" style="left:950px;top:40px;">Data</div>
+    <div class="box data" style="left:950px;top:58px;">
+      <div class="box-title">CreatureSpecies</div>
+      <div class="box-body"><div>Id, Name, Type</div><div>BaseHp/Atk/Def/Speed</div><div>Learnset</div><div>EvolvesIntoId</div></div>
+    </div>
+    <div class="box data" style="left:950px;top:205px;">
+      <div class="box-title">MoveData</div>
+      <div class="box-body"><div>Name, Type</div><div>Power, Accuracy</div><div>Description</div></div>
+    </div>
+    <div class="box data" style="left:950px;top:340px;">
+      <div class="box-title">TypeReactionTable</div>
+      <div class="box-body"><div>GetReaction(t1, t2)</div><div>&rarr; ReactionEffect</div></div>
+    </div>
+    <div class="box data" style="left:950px;top:475px;">
+      <div class="box-title">SpeciesRegistry</div>
+      <div class="box-body"><div>Get(id)</div><div>Load(jsonPath)</div></div>
+    </div>
+    <div class="box data" style="left:950px;top:600px;">
+      <div class="box-title">MoveRegistry</div>
+      <div class="box-body"><div>Get(name)</div><div>Load(jsonPath)</div></div>
+    </div>
+    <div class="box data" style="left:1150px;top:58px;">
+      <div class="box-title">«enum» CreatureType</div>
+      <div class="box-body"><div>Normal, Fire, Water</div><div>Earth, Wind</div><div>Electricity</div></div>
+    </div>
+    <div class="box data planned" style="left:1150px;top:205px;">
+      <div class="box-title">«enum» MoveEffect ★</div>
+      <div class="box-body"><div>RaiseUserSpeed</div><div>LowerTargetSpeed</div><div>ApplyBurn, etc.</div></div>
+    </div>
+    <div class="box data" style="left:1330px;top:340px;">
+      <div class="box-title">«enum» ReactionEffect</div>
+      <div class="box-body"><div>None, Vapor, Mud</div><div>Inferno, Frost</div><div>Lightning, +5 more</div></div>
+    </div>
+
+    <div class="legend">
+      <div><span class="legend-dot" style="background:#6c8ebf"></span>Core</div>
+      <div><span class="legend-dot" style="background:#d6855b"></span>Battle</div>
+      <div><span class="legend-dot" style="background:#82b366"></span>Data</div>
+      <div><span class="legend-dot" style="background:#9673a6"></span>World</div>
+      <div><span class="legend-dot" style="background:#b08050"></span>States</div>
+      <div><span class="legend-dot" style="background:#6aa84f"></span>Entities</div>
+      <div style="border-top:1px solid #eee;margin-top:4px;padding-top:4px;font-size:9px;color:#888;">
+        <div>── association</div>
+        <div>◆── composition</div>
+        <div>◇── aggregation</div>
+        <div>──▷ inheritance</div>
+        <div>- -&#x2192; dependency</div>
+      </div>
+      <div style="border-top:1px solid #eee;margin-top:4px;padding-top:4px;"><span class="legend-dot" style="background:#bbb;"></span>★ Planned</div>
+    </div>
+    <div class="hint">Drag to pan &nbsp;·&nbsp; Scroll to zoom</div>
+
   </div>
-  <div class="hint">Drag to pan</div>
 </div>
 
 <script>
   const canvas = document.getElementById('canvas');
   const world  = document.getElementById('world');
   let scale = 0.72, ox = 0, oy = 0, dragging = false, sx, sy;
-
   function applyTransform() {
     world.style.transform = `translate(${ox}px,${oy}px) scale(${scale})`;
   }
   applyTransform();
-
   canvas.addEventListener('mousedown', e => {
     dragging = true; sx = e.clientX - ox; sy = e.clientY - oy;
     canvas.classList.add('dragging');
   });
   window.addEventListener('mousemove', e => {
     if (!dragging) return;
-    ox = e.clientX - sx; oy = e.clientY - sy;
-    applyTransform();
+    ox = e.clientX - sx; oy = e.clientY - sy; applyTransform();
   });
   window.addEventListener('mouseup', () => { dragging = false; canvas.classList.remove('dragging'); });
   canvas.addEventListener('wheel', e => {
