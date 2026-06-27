@@ -4,7 +4,7 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: transparent; font-family: 'Segoe UI', sans-serif; font-size: 11px; overflow: hidden; }
-  #canvas { position: relative; width: 100%; height: 600px; overflow: hidden; cursor: grab; }
+  #canvas { position: relative; width: 100%; height: 620px; overflow: hidden; cursor: grab; }
   #canvas.dragging { cursor: grabbing; }
   #world { position: absolute; transform-origin: 0 0; }
 
@@ -66,7 +66,7 @@
   .planned-style .box-title { background: #999; color: white; }
 
   svg.arrows { position: absolute; top: 0; left: 0; pointer-events: none; }
-  .arrow { stroke: #aaa; stroke-width: 1.5; fill: none; marker-end: url(#arrowhead); }
+  .arrow { stroke-width: 1.5; fill: none; }
   .arrow.strong { stroke: #888; stroke-width: 2; }
 
   .legend {
@@ -87,53 +87,98 @@
 </style>
 </head>
 <body>
-<h2 class="sr-only">UML class diagram for a MonoGame Pokemon-style game, showing implemented classes and planned features grouped by namespace.</h2>
+<h2 style="font-family:'Segoe UI',sans-serif; font-size:11px; font-weight:600; color:#888; letter-spacing:0.5px; padding:6px 12px 4px; opacity:0.75;">UML class diagram &mdash; MonoGame Pok&eacute;mon-style game &middot; implemented classes &amp; planned features by namespace</h2>
 <div id="canvas">
-  <div id="world" style="width:1400px; height:900px;">
-    <svg class="arrows" width="1400" height="900">
+  <div id="world" style="width:1650px; height:950px;">
+    <svg class="arrows" width="1650" height="950">
       <defs>
-        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-          <polygon points="0 0, 8 3, 0 6" fill="#aaa"/>
+        <!-- ── Filled arrowheads (association / dependency target end) ── -->
+        <marker id="arr-core"   markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#6c8ebf"/></marker>
+        <marker id="arr-states" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#b08050"/></marker>
+        <marker id="arr-battle" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#d6855b"/></marker>
+        <marker id="arr-data"   markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#82b366"/></marker>
+        <marker id="arr-world"  markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#9673a6"/></marker>
+
+        <!-- ── Hollow triangle — Generalization / Inheritance (tip points at parent) ── -->
+        <marker id="inh-states" markerWidth="13" markerHeight="10" refX="11" refY="5" orient="auto">
+          <polygon points="0,0 10,5 0,10" fill="white" stroke="#b08050" stroke-width="1.5"/>
+        </marker>
+
+        <!-- ── Filled diamond — Composition (source/owner end, extends toward target) ── -->
+        <marker id="comp-core"  markerWidth="14" markerHeight="12" refX="0" refY="5" orient="auto">
+          <polygon points="0,5 6,0 12,5 6,10" fill="#6c8ebf"/>
+        </marker>
+        <marker id="comp-world" markerWidth="14" markerHeight="12" refX="0" refY="5" orient="auto">
+          <polygon points="0,5 6,0 12,5 6,10" fill="#9673a6"/>
+        </marker>
+
+        <!-- ── Empty diamond — Aggregation (source/owner end, extends toward target) ── -->
+        <marker id="agg-core"   markerWidth="14" markerHeight="12" refX="0" refY="5" orient="auto">
+          <polygon points="0,5 6,0 12,5 6,10" fill="white" stroke="#6c8ebf" stroke-width="1.5"/>
+        </marker>
+        <marker id="agg-states" markerWidth="14" markerHeight="12" refX="0" refY="5" orient="auto">
+          <polygon points="0,5 6,0 12,5 6,10" fill="white" stroke="#b08050" stroke-width="1.5"/>
+        </marker>
+        <marker id="agg-battle" markerWidth="14" markerHeight="12" refX="0" refY="5" orient="auto">
+          <polygon points="0,5 6,0 12,5 6,10" fill="white" stroke="#d6855b" stroke-width="1.5"/>
         </marker>
       </defs>
-      <!-- Game1 → PlayerData -->
-      <line class="arrow" x1="120" y1="80" x2="120" y2="200"/>
-      <!-- Game1 → StateManager -->
-      <line class="arrow" x1="190" y1="60" x2="310" y2="60"/>
-      <!-- PlayerData → Creature -->
-      <line class="arrow" x1="185" y1="230" x2="550" y2="160"/>
-      <!-- StateManager → GameState -->
-      <line class="arrow" x1="375" y1="90" x2="375" y2="200"/>
-      <!-- GameState ← OverworldState -->
-      <line class="arrow" x1="340" y1="260" x2="240" y2="370"/>
-      <!-- GameState ← BattleState -->
-      <line class="arrow" x1="375" y1="260" x2="375" y2="370"/>
-      <!-- GameState ← MainMenuState -->
-      <line class="arrow" x1="410" y1="260" x2="510" y2="370"/>
-      <!-- OverworldState → Player -->
-      <line class="arrow" x1="200" y1="420" x2="120" y2="510"/>
-      <!-- OverworldState → TileMap -->
-      <line class="arrow" x1="220" y1="440" x2="660" y2="370"/>
-      <!-- OverworldState → EncounterTable -->
-      <line class="arrow" x1="230" y1="450" x2="700" y2="470"/>
-      <!-- BattleState → Creature -->
-      <line class="arrow" x1="420" y1="390" x2="570" y2="200"/>
-      <!-- Creature → CreatureSpecies -->
-      <line class="arrow" x1="630" y1="190" x2="810" y2="110"/>
-      <!-- Creature → MoveData -->
-      <line class="arrow" x1="680" y1="170" x2="860" y2="240"/>
-      <!-- CreatureSpecies → CreatureType -->
-      <line class="arrow" x1="940" y1="110" x2="1040" y2="110"/>
-      <!-- MoveData → CreatureType -->
-      <line class="arrow" x1="980" y1="260" x2="1040" y2="160"/>
-      <!-- TypeReactionTable → CreatureType -->
-      <line class="arrow" x1="1000" y1="330" x2="1060" y2="180"/>
-      <!-- TypeReactionTable → ReactionEffect -->
-      <line class="arrow" x1="1060" y1="350" x2="1160" y2="350"/>
-      <!-- EncounterTable → EncounterEntry -->
-      <line class="arrow" x1="830" y1="490" x2="920" y2="560"/>
-      <!-- EncounterTable → Creature -->
-      <line class="arrow" x1="760" y1="460" x2="660" y2="220"/>
+
+      <!-- ══════════ CORE ══════════ -->
+      <!-- Composition: Game1 ◆─→ PlayerData -->
+      <line stroke="#6c8ebf" marker-start="url(#comp-core)" marker-end="url(#arr-core)" x1="120" y1="120" x2="120" y2="190"/>
+      <!-- Composition: Game1 ◆─→ GameStateManager -->
+      <line stroke="#6c8ebf" marker-start="url(#comp-core)" marker-end="url(#arr-core)" x1="185" y1="62" x2="305" y2="62"/>
+      <!-- Aggregation: PlayerData ◇─→ Creature (Party list) -->
+      <line stroke="#6c8ebf" marker-start="url(#agg-core)" marker-end="url(#arr-core)" x1="185" y1="215" x2="700" y2="170"/>
+      <!-- Association: GameStateManager ──→ GameState -->
+      <line stroke="#6c8ebf" marker-end="url(#arr-core)" x1="370" y1="86" x2="370" y2="200"/>
+
+      <!-- ══════════ STATES ══════════ -->
+      <!-- Generalization: child ──▷ GameState (hollow triangle at parent) -->
+      <line stroke="#b08050" marker-end="url(#inh-states)" x1="225" y1="370" x2="345" y2="280"/>
+      <line stroke="#b08050" marker-end="url(#inh-states)" x1="370" y1="370" x2="370" y2="280"/>
+      <line stroke="#b08050" marker-end="url(#inh-states)" x1="515" y1="370" x2="400" y2="280"/>
+      <!-- Aggregation: OverworldState ◇─→ Player -->
+      <line stroke="#b08050" marker-start="url(#agg-states)" marker-end="url(#arr-states)" x1="165" y1="415" x2="140" y2="510"/>
+      <!-- Aggregation: OverworldState ◇─→ TileMap -->
+      <line stroke="#b08050" marker-start="url(#agg-states)" marker-end="url(#arr-states)" x1="290" y1="400" x2="760" y2="400"/>
+      <!-- Aggregation: OverworldState ◇─→ EncounterTable -->
+      <line stroke="#b08050" marker-start="url(#agg-states)" marker-end="url(#arr-states)" x1="290" y1="420" x2="760" y2="516"/>
+      <!-- Association: BattleState ──→ Creature -->
+      <line stroke="#b08050" marker-end="url(#arr-states)" x1="435" y1="395" x2="700" y2="175"/>
+
+      <!-- ══════════ BATTLE ══════════ -->
+      <!-- Association: MoveChoice ──→ Creature (User ref) -->
+      <line stroke="#d6855b" marker-end="url(#arr-battle)" x1="765" y1="310" x2="765" y2="217"/>
+      <!-- Association: MoveChoice ──→ MoveData (Move ref) -->
+      <line stroke="#d6855b" marker-end="url(#arr-battle)" x1="830" y1="335" x2="1020" y2="262"/>
+      <!-- Aggregation: Creature ◇─→ MoveData (Moves list) -->
+      <line stroke="#d6855b" marker-start="url(#agg-battle)" marker-end="url(#arr-battle)" x1="830" y1="185" x2="1020" y2="250"/>
+      <!-- Association: Creature ──→ CreatureSpecies -->
+      <line stroke="#d6855b" marker-end="url(#arr-battle)" x1="830" y1="148" x2="1020" y2="125"/>
+
+      <!-- ══════════ DATA — Dependency (dashed) ══════════ -->
+      <!-- CreatureSpecies ··→ CreatureType -->
+      <line stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1150" y1="115" x2="1220" y2="115"/>
+      <!-- MoveData ··→ CreatureType -->
+      <line stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1150" y1="250" x2="1220" y2="140"/>
+      <!-- MoveData ··→ MoveEffect ★ -->
+      <line stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1150" y1="268" x2="1220" y2="268"/>
+      <!-- TypeReactionTable ··→ CreatureType -->
+      <line stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1150" y1="378" x2="1220" y2="155"/>
+      <!-- TypeReactionTable ··→ ReactionEffect -->
+      <line stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" x1="1150" y1="395" x2="1420" y2="395"/>
+      <!-- SpeciesRegistry ··→ CreatureSpecies (routed left of column) -->
+      <path stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" d="M 1020,537 L 988,537 L 988,120 L 1020,120" fill="none"/>
+      <!-- MoveRegistry ··→ MoveData -->
+      <path stroke="#82b366" stroke-dasharray="5,3" marker-end="url(#arr-data)" d="M 1020,657 L 980,657 L 980,262 L 1020,262" fill="none"/>
+
+      <!-- ══════════ WORLD ══════════ -->
+      <!-- Composition: EncounterTable ◆─→ EncounterEntry -->
+      <line stroke="#9673a6" marker-start="url(#comp-world)" marker-end="url(#arr-world)" x1="890" y1="527" x2="920" y2="635"/>
+      <!-- Dependency: EncounterTable ··→ Creature (spawns instances) -->
+      <path stroke="#9673a6" stroke-dasharray="5,3" marker-end="url(#arr-world)" d="M 760,515 L 690,515 L 690,217" fill="none"/>
     </svg>
 
     <!-- GROUP: CORE -->
@@ -260,10 +305,10 @@
     </div>
 
     <!-- GROUP: BATTLE -->
-    <div class="group-label" style="left:545px;top:95px;">Battle</div>
+    <div class="group-label" style="left:700px;top:78px;">Battle</div>
 
     <!-- Creature -->
-    <div class="box battle" style="left:545px;top:115px;">
+    <div class="box battle" style="left:700px;top:100px;">
       <div class="box-title">Creature</div>
       <div class="box-body">
         <div>Species, Level</div>
@@ -275,7 +320,7 @@
     </div>
 
     <!-- MoveChoice -->
-    <div class="box battle" style="left:545px;top:290px;">
+    <div class="box battle" style="left:700px;top:310px;">
       <div class="box-title">MoveChoice</div>
       <div class="box-body">
         <div>User: Creature</div>
@@ -284,7 +329,7 @@
     </div>
 
     <!-- Planned: DamageCalculator -->
-    <div class="box battle planned" style="left:545px;top:380px;">
+    <div class="box battle planned" style="left:700px;top:430px;">
       <div class="box-title">DamageCalculator ★</div>
       <div class="box-body">
         <div>Calculate(move, atk, def)</div>
@@ -293,7 +338,7 @@
     </div>
 
     <!-- Planned: BattleUI -->
-    <div class="box battle planned" style="left:545px;top:470px;">
+    <div class="box battle planned" style="left:700px;top:550px;">
       <div class="box-title">BattleUI ★</div>
       <div class="box-body">
         <div>HP bars</div>
@@ -303,10 +348,10 @@
     </div>
 
     <!-- GROUP: DATA -->
-    <div class="group-label" style="left:800px;top:55px;">Data</div>
+    <div class="group-label" style="left:1020px;top:48px;">Data</div>
 
     <!-- CreatureSpecies -->
-    <div class="box data" style="left:800px;top:75px;">
+    <div class="box data" style="left:1020px;top:70px;">
       <div class="box-title">CreatureSpecies</div>
       <div class="box-body">
         <div>Id, Name, Type</div>
@@ -317,7 +362,7 @@
     </div>
 
     <!-- MoveData -->
-    <div class="box data" style="left:800px;top:230px;">
+    <div class="box data" style="left:1020px;top:225px;">
       <div class="box-title">MoveData</div>
       <div class="box-body">
         <div>Name, Type</div>
@@ -327,7 +372,7 @@
     </div>
 
     <!-- TypeReactionTable -->
-    <div class="box data" style="left:800px;top:310px;">
+    <div class="box data" style="left:1020px;top:360px;">
       <div class="box-title">TypeReactionTable</div>
       <div class="box-body">
         <div>GetReaction(t1, t2)</div>
@@ -336,7 +381,7 @@
     </div>
 
     <!-- SpeciesRegistry -->
-    <div class="box data" style="left:800px;top:420px;">
+    <div class="box data" style="left:1020px;top:510px;">
       <div class="box-title">SpeciesRegistry</div>
       <div class="box-body">
         <div>Get(id)</div>
@@ -345,7 +390,7 @@
     </div>
 
     <!-- MoveRegistry -->
-    <div class="box data" style="left:800px;top:510px;">
+    <div class="box data" style="left:1020px;top:630px;">
       <div class="box-title">MoveRegistry</div>
       <div class="box-body">
         <div>Get(name)</div>
@@ -354,7 +399,7 @@
     </div>
 
     <!-- CreatureType enum -->
-    <div class="box data" style="left:1000px;top:75px;">
+    <div class="box data" style="left:1220px;top:70px;">
       <div class="box-title">«enum» CreatureType</div>
       <div class="box-body">
         <div>Normal, Fire, Water</div>
@@ -364,7 +409,7 @@
     </div>
 
     <!-- ReactionEffect enum -->
-    <div class="box data" style="left:1150px;top:310px;">
+    <div class="box data" style="left:1420px;top:360px;">
       <div class="box-title">«enum» ReactionEffect</div>
       <div class="box-body">
         <div>None, Vapor, Mud</div>
@@ -374,7 +419,7 @@
     </div>
 
     <!-- Planned: MoveEffect enum -->
-    <div class="box data planned" style="left:1000px;top:230px;">
+    <div class="box data planned" style="left:1220px;top:225px;">
       <div class="box-title">«enum» MoveEffect ★</div>
       <div class="box-body">
         <div>RaiseUserSpeed</div>
@@ -384,10 +429,10 @@
     </div>
 
     <!-- GROUP: WORLD -->
-    <div class="group-label" style="left:650px;top:340px;">World</div>
+    <div class="group-label" style="left:760px;top:338px;">World</div>
 
     <!-- TileMap -->
-    <div class="box world" style="left:650px;top:360px;">
+    <div class="box world" style="left:760px;top:360px;">
       <div class="box-title">TileMap</div>
       <div class="box-body">
         <div>Width, Height</div>
@@ -398,7 +443,7 @@
     </div>
 
     <!-- EncounterTable -->
-    <div class="box world" style="left:650px;top:490px;">
+    <div class="box world" style="left:760px;top:500px;">
       <div class="box-title">EncounterTable</div>
       <div class="box-body">
         <div>SpawnRandom(rng)</div>
@@ -407,7 +452,7 @@
     </div>
 
     <!-- EncounterEntry -->
-    <div class="box world" style="left:800px;top:600px;">
+    <div class="box world" style="left:920px;top:610px;">
       <div class="box-title">EncounterEntry</div>
       <div class="box-body">
         <div>SpeciesId, Weight</div>
@@ -416,7 +461,7 @@
     </div>
 
     <!-- MapTransition -->
-    <div class="box world" style="left:650px;top:620px;">
+    <div class="box world" style="left:760px;top:640px;">
       <div class="box-title">MapTransition</div>
       <div class="box-body">
         <div>Direction</div>
